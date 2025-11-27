@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QR_Code_Generator.MainPage">
+
+    <ScrollView>
+        <!-- Responsive container: Horizontal on wider screens, Vertical on phones -->
+        <StackLayout Orientation="{OnIdiom Phone=Vertical, Default=Horizontal}"
+                     Padding="30,0"
+                     Spacing="25"
+                     MinimumWidthRequest="300">
+
+            <!-- Left pane: existing content -->
+            <VerticalStackLayout Spacing="12" HorizontalOptions="Start" WidthRequest="320">
+                <Image
+                    Source="dotnet_bot.png"
+                    HeightRequest="185"
+                    Aspect="AspectFit"
+                    SemanticProperties.Description="dot net bot in a hovercraft number nine" />
+
+                <Label
+    Text="QR Generator"
+    Style="{StaticResource SubHeadline}" HorizontalOptions="Start"
+    SemanticProperties.HeadingLevel="Level2"
+    SemanticProperties.Description="User input for generating the QR Code"/>
+                
+                <Editor
+                    x:Name="InputText"
+                    Placeholder="Enter text here"
+                    Keyboard="Text"
+                    HorizontalOptions="Fill"
+                    HeightRequest="100"
+                    Margin="0,0,0,10"
+                    SemanticProperties.Description="Input field for the text to be converted into a QR code"/>
+
+                
+                <Button
+                    x:Name="GenerateBtn"
+                    Text="Generate"
+                    SemanticProperties.Hint="Generates QR code image"
+                    Clicked="GenerateBtn_Clicked"
+                    HorizontalOptions="Fill"
+                    FontSize="Title"
+                    Padding="3"/>
+                <Button x:Name="ClearBtn"
+        Text="Clear"
+        SemanticProperties.Hint="Clear generated QR code image and input text"
+        HorizontalOptions="Fill"
+FontSize="Title"
+Padding="3"/>
+            </VerticalStackLayout>
+
+            <!-- Right pane: image box + save button -->
+            <VerticalStackLayout Spacing="10"
+                                 x:Name="ResultPane"
+                                 HorizontalOptions="End"
+                                 VerticalOptions="Start"
+                                 WidthRequest="220"
+                                 IsVisible="False">
+
+                <Border StrokeShape="RoundRectangle 8"
+                        StrokeThickness="0"
+                        Background="#f0f0f0"
+                        Padding="6"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Start">
+                    <Image x:Name="QrImage"
+                           Source="placeholder_image.png"
+                           WidthRequest="180"
+                           HeightRequest="180"
+                           Aspect="AspectFit"
+                           SemanticProperties.Description="Generated QR code preview" />
+                </Border>
+
+                <Button x:Name="SaveBtn"
+                        Text="Save"
+                        SemanticProperties.Hint="Saves the generated QR code image"
+                        Clicked="SaveBtn_Clicked"
+                        HorizontalOptions="Center"
+                        Padding="6"/>
+            </VerticalStackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
